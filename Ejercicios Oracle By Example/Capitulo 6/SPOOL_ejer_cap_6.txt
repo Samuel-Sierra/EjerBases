@@ -1,0 +1,124 @@
+SQL> REM ESTUDIANTES Sierra Fierro Samuel Isaac / Cesar Abraham
+SQL> SET PAGESIZE 200
+SQL> SET LINESIZE 500
+SQL> set colsep '||'
+SQL> set null Nulos
+SQL> COLUMN timestamp_col NEW_VALUE timestamp_var
+SQL> 
+SQL> ----------------------------------------------------------------------------------------
+SQL> REM (A.Rischert, 2009, 264)
+SQL> REM Function COUNT
+SQL> SELECT COUNT(*)
+  2  FROM enrollment;
+
+  COUNT(*)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+----------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+       226                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+
+SQL> REM La funcion count cuenta el numero de tuplas de una tabla
+SQL> 
+SQL> SELECT COUNT(final_grade), COUNT(section_id), COUNT(*)
+  2  FROM enrollment;
+
+COUNT(FINAL_GRADE)||COUNT(SECTION_ID)||  COUNT(*)                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+------------------||-----------------||----------                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+                 1||              226||       226                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+
+SQL> 
+SQL> ------------------------------------------------------------------------------------------
+SQL> REM (A.Rischert, 2009, 265)
+SQL> REM Function DISTINCT
+SQL> SELECT COUNT(DISTINCT section_id), COUNT(section_id)
+  2  FROM enrollment;
+
+COUNT(DISTINCTSECTION_ID)||COUNT(SECTION_ID)                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+-------------------------||-----------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+                       64||              226                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+
+SQL> 
+SQL> REM la funcion Distinct se usa para saber que valores son distintos de esa tabla
+SQL> 
+SQL> ------------------------------------------------------------------------------------------
+SQL> REM (A.Rischert 2009, 265)
+SQL> REM Function SUM
+SQL> REM LA FUNCION SUM CREA GRUPOS AL JUNTAR LAS TUPLAS DE UNA TABLA, LOS VALORES NULL SON IGNORADOS
+SQL> SELECT SUM(capacity)
+  2  FROM section;
+
+SUM(CAPACITY)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+-------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+         1627                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+
+SQL> 
+SQL> ------------------------------------------------------------------------------------------
+SQL> REM (A.Rischert 2009, 268)
+SQL> REM EJERCICIOS 6.1
+SQL> REM a) Write a SELECT statement that determines how many courses do not have a prerequisite.
+SQL> SELECT COUNT(*)
+  2  FROM COURSE
+  3  WHERE prerequisite IS NULL;
+
+  COUNT(*)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+----------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+         4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+
+SQL> 
+SQL> ----------------------------------------------------------------------------------------------
+SQL> REM (A.Rischert 2009, 268)
+SQL> REM EJERCICIOS 6.1
+SQL> REM b) Write a SELECT statement that determines the total number of students enrolled. Count each student only once,
+SQL> REM no matter how many courses the student is enrolled in.
+SQL> 
+SQL> SELECT COUNT(DISTINCT STUDENT_ID)
+  2  FROM ENROLLMENT;
+
+COUNT(DISTINCTSTUDENT_ID)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+-------------------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+                      165                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+
+SQL> 
+SQL> -----------------------------------------------------------------------------------------------
+SQL> REM (A.Rischert 2009, 268)
+SQL> REM EJERCICIOS 6.1
+SQL> REM c)Determine the average cost for all courses. If the course cost contains a null value, substitute the value 0.
+SQL> 
+SQL> SELECT AVG(COST), AVG(NVL(COST, 0))
+  2  FROM COURSE;
+
+ AVG(COST)||AVG(NVL(COST,0))                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+----------||----------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+1198.44828||          1158.5                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+
+SQL> REM AVG(COST) HACE EL PROMEDIO DE LA TUPLA COST CON VALORES NULL MIENTRAS QUE LA OTRA FUNCION LE ASIGNA UN 0 A LOS VALORES NULL
+SQL> 
+SQL> -----------------------------------------------------------------------------------------------
+SQL> REM (A.Rischert 2009, 268)
+SQL> REM EJERCICIOS 6.1
+SQL> REM d) Write a SELECT statement that determines the date of the most recent enrollment.
+SQL> 
+SQL> SELECT MAX(registration_date) "Last"
+  2  FROM STUDENT;
+
+Last                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+---------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+23-FEB-03                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+
+SQL> 
+SQL> SELECT MAX(ENROLLMENT) "Last"
+  2  FROM STUDENT;
+SELECT MAX(ENROLLMENT) "Last"
+           *
+ERROR en línea 1:
+ORA-00904: "ENROLLMENT": identificador no válido 
+
+
+SQL> 
+SQL> SELECT MAX(ENROLL_DATE)
+  2  FROM ENROLLMENT;
+
+MAX(ENROL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+---------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+21-FEB-03                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+
+SQL> 
+SQL> spool off;

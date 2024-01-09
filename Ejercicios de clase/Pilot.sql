@@ -1,0 +1,55 @@
+ALTER SESSION set"_ORACLE_SCRIPT"=true;
+CREATE USER DEP IDENTIFIED BY 1234
+DEFAULT TABLESPACE users
+TEMPORARY TABLESPACE temp;
+-- ---------------------------------------------------------------------
+ALTER USER DEP DEFAULT TABLESPACE USERS;
+ALTER USER DEP TEMPORARY TABLESPACE temp;
+GRANT connect, resource TO DEP;
+GRANT INSERT ANY TABLE TO DEP; 
+GRANT unlimited tablespace TO DEP;
+CONNEC DEP/1234
+set linesize 300
+set pagesize 90
+set col
+set feddback on
+set colsep  '|-|'
+set colsep '║'
+set null s/Datos
+DROP TABLE VUELOS CASCADE CONSTRAINTS;   
+CREATE TABLE VUELOS(
+    PILOT VARCHAR2(20),
+    FLIGHT NUMBER(3),
+    FECHA TIMESTAMP
+);
+
+insert into VUELOS values('Cushing',83,TO_DATE('09/08/2018 10:15:00','DD/MM/YYYY HH24:MI:SS')); 
+insert into VUELOS values('Cushing',116,TO_DATE('10/08/2018 13:25:00','DD/MM/YYYY HH24:MI:SS')); 
+
+insert into VUELOS values('Clark',281,TO_DATE('08/08/2018 5:50:00','DD/MM/YYYY HH24:MI:SS'));
+insert into VUELOS values('Clark',301,To_DATE('12/08/2018 18:35:00','DD/MM/YYYY HH24:MI:SS')); 
+insert into VUELOS values('Clark',83,TO_DATE('11/08/2018 10:15:00','DD/MM/YYYY HH24:MI:SS')); 
+
+insert into VUELOS values('Chin',83,TO_DATE('13/08/2018 10:15:00','DD/MM/YYYY HH24:MI:SS')); 
+insert into VUELOS values('Chin',116,TO_DATE('12/08/2018 13:25:00','DD/MM/YYYY HH24:MI:SS')); 
+
+insert into VUELOS values('Copely',281,To_DATE('09/08/2018 5:50:00','DD/MM/YYYY HH24:MI:SS')); 
+insert into VUELOS values('Copely',281,TO_DATE('13/08/2018 5:50:00','DD/MM/YYYY HH24:MI:SS'));
+insert into VUELOS values('Copely',412,TO_DATE('15/08/2018 13:25:00','DD/MM/YYYY HH24:MI:SS')); 
+
+SELECT * FROM VUELOS;
+
+SELECT FLIGHT VUELO, 
+    PILOT PILOTO,
+    TO_CHAR (FECHA, 'DD/MM/YYYY HH24:MI:SS') FECHA
+    FROM VUELOS;
+SELECT FLIGHT VUELO,
+    PILOT PILOTO, 
+    TO_CHAR (FECHA, 'DD/MM/YYYY HH24:MI:SS') FECHA
+    FROM VUELOS 
+    ORDER BY 1; 
+SELECT FLIGHT VUELO,
+    PILOT PILOTO, 
+    TO_CHAR (FECHA, 'DD/MM/YYYY HH24:MI:SS') FECHA
+    FROM VUELOS 
+    ORDER BY 2;

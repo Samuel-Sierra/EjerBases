@@ -1,0 +1,360 @@
+SQL> REM ESTUDIANTES Sierra Fierro Samuel Isaac / Cesar Abraham
+SQL> SET PAGESIZE 50
+SQL> SET LINESIZE 130
+SQL> set colsep '||'
+SQL> set null Nulos
+SQL> COLUMN timestamp_col NEW_VALUE timestamp_var
+SQL> 
+SQL> -----------------------------------------------------------------
+SQL> REM (A.Rischert,2009,368-370)
+SQL> REM SCALAR SUBQUERIES
+SQL> 
+SQL> SELECT MIN(cost)
+  2  FROM course
+  3  
+SQL> SELECT course_no, description, cost
+  2  FROM course
+  3  WHERE cost = 1095;
+
+ COURSE_NO||DESCRIPTION                                       ||     COST                                                         
+----------||--------------------------------------------------||---------                                                         
+       135||Unix Tips and Techniques                          || 1,095.00                                                         
+       230||Intro to Internet                                 || 1,095.00                                                         
+       240||Intro to the Basic Language                       || 1,095.00                                                         
+
+SQL> 
+SQL> SELECT course_no, description, cost
+  2  FROM course
+  3  WHERE cost =
+  4  (SELECT MIN(cost)
+  5  FROM course);
+
+ COURSE_NO||DESCRIPTION                                       ||     COST                                                         
+----------||--------------------------------------------------||---------                                                         
+       135||Unix Tips and Techniques                          || 1,095.00                                                         
+       230||Intro to Internet                                 || 1,095.00                                                         
+       240||Intro to the Basic Language                       || 1,095.00                                                         
+
+SQL> 
+SQL> REM EJEMPLO DISTINTO AL LIBRO
+SQL> SELECT course_no, description, cost
+  2  FROM course
+  3  WHERE cost =
+  4  (SELECT MIN(cost)
+  5  FROM course
+  6  WHERE cost > 1095);
+
+ COURSE_NO||DESCRIPTION                                       ||     COST                                                         
+----------||--------------------------------------------------||---------                                                         
+        10||DP Overview                                       || 1,195.00                                                         
+        20||Intro to Computers                                || 1,195.00                                                         
+        25||Intro to Programming                              || 1,195.00                                                         
+       100||Hands-On Windows                                  || 1,195.00                                                         
+       120||Intro to Java Programming                         || 1,195.00                                                         
+       122||Intermediate Java Programming                     || 1,195.00                                                         
+       124||Advanced Java Programming                         || 1,195.00                                                         
+       125||JDeveloper                                        || 1,195.00                                                         
+       130||Intro to Unix                                     || 1,195.00                                                         
+       132||Basics of Unix Admin                              || 1,195.00                                                         
+       134||Advanced Unix Admin                               || 1,195.00                                                         
+       140||Structured Analysis                               || 1,195.00                                                         
+       142||Project Management                                || 1,195.00                                                         
+       144||Database Design                                   || 1,195.00                                                         
+       145||Internet Protocols                                || 1,195.00                                                         
+       146||Java for C/C++ Programmers                        || 1,195.00                                                         
+       147||GUI Programming                                   || 1,195.00                                                         
+       204||Intro to SQL                                      || 1,195.00                                                         
+       210||Oracle Tools                                      || 1,195.00                                                         
+       220||PL/SQL Programming                                || 1,195.00                                                         
+       310||Operating Systems                                 || 1,195.00                                                         
+       330||Network Administration                            || 1,195.00                                                         
+       350||JDeveloper Lab                                    || 1,195.00                                                         
+       420||Database System Principles                        || 1,195.00                                                         
+       430||JDeveloper Techniques                             || 1,195.00                                                         
+
+25 filas seleccionadas.
+
+SQL> REM ahi se muestra el curso mas barato que no sea el de 1095 juntando ambas consultas
+SQL> 
+SQL> -------------------------------------------------------------------------------------------
+SQL> REM (A.Rischert,2009,368-370)
+SQL> 
+SQL> REM Subqueries That Return Multiple Rows
+SQL> SELECT course_no, description, cost
+  2  FROM course
+  3  WHERE cost =
+  4  (SELECT MAX(cost)
+  5  FROM course);
+
+ COURSE_NO||DESCRIPTION                                       ||     COST                                                         
+----------||--------------------------------------------------||---------                                                         
+        80||Structured Programming Techniques                 || 1,595.00                                                         
+
+SQL> 
+SQL> REM el siguiente segmento no debe funcionar
+SQL> SELECT course_no, description, cost
+  2  FROM course
+  3  WHERE cost =
+  4  (SELECT cost
+  5  FROM course
+  6  WHERE prerequisite = 20);
+(SELECT cost
+ *
+ERROR en línea 4:
+ORA-01427: la subconsulta de una sola fila devuelve más de una fila 
+
+
+SQL> REM debido a que la subconsulta retorna mas de una fila
+SQL> REM la correcta sintaxis es la siguiente
+SQL> 
+SQL> SELECT course_no, description, cost
+  2  FROM course
+  3  WHERE cost IN
+  4  (SELECT cost
+  5  FROM course
+  6  WHERE prerequisite = 20);
+
+ COURSE_NO||DESCRIPTION                                       ||     COST                                                         
+----------||--------------------------------------------------||---------                                                         
+        10||DP Overview                                       || 1,195.00                                                         
+        20||Intro to Computers                                || 1,195.00                                                         
+        25||Intro to Programming                              || 1,195.00                                                         
+       100||Hands-On Windows                                  || 1,195.00                                                         
+       120||Intro to Java Programming                         || 1,195.00                                                         
+       122||Intermediate Java Programming                     || 1,195.00                                                         
+       124||Advanced Java Programming                         || 1,195.00                                                         
+       125||JDeveloper                                        || 1,195.00                                                         
+       130||Intro to Unix                                     || 1,195.00                                                         
+       132||Basics of Unix Admin                              || 1,195.00                                                         
+       134||Advanced Unix Admin                               || 1,195.00                                                         
+       140||Structured Analysis                               || 1,195.00                                                         
+       142||Project Management                                || 1,195.00                                                         
+       144||Database Design                                   || 1,195.00                                                         
+       145||Internet Protocols                                || 1,195.00                                                         
+       146||Java for C/C++ Programmers                        || 1,195.00                                                         
+       147||GUI Programming                                   || 1,195.00                                                         
+       204||Intro to SQL                                      || 1,195.00                                                         
+       210||Oracle Tools                                      || 1,195.00                                                         
+       220||PL/SQL Programming                                || 1,195.00                                                         
+       310||Operating Systems                                 || 1,195.00                                                         
+       330||Network Administration                            || 1,195.00                                                         
+       350||JDeveloper Lab                                    || 1,195.00                                                         
+       420||Database System Principles                        || 1,195.00                                                         
+       430||JDeveloper Techniques                             || 1,195.00                                                         
+
+25 filas seleccionadas.
+
+SQL> 
+SQL> SELECT course_no, description, cost
+  2  FROM course
+  3  WHERE cost NOT IN
+  4  (SELECT cost
+  5  FROM course
+  6  WHERE prerequisite = 20);
+
+ COURSE_NO||DESCRIPTION                                       ||     COST                                                         
+----------||--------------------------------------------------||---------                                                         
+       135||Unix Tips and Techniques                          || 1,095.00                                                         
+       230||Intro to Internet                                 || 1,095.00                                                         
+       240||Intro to the Basic Language                       || 1,095.00                                                         
+        80||Structured Programming Techniques                 || 1,595.00                                                         
+
+SQL> 
+SQL> ----------------------------------------------------------------
+SQL> 
+SQL> REM (A.Rischert,2009,327-328);
+SQL> REM Nesting Multiple Subqueries
+SQL> 
+SQL> SELECT last_name, first_name
+  2  FROM student
+  3  WHERE student_id IN
+  4  (SELECT student_id
+  5  FROM enrollment
+  6  WHERE section_id IN
+  7  (SELECT section_id
+  8  FROM section
+  9  WHERE section_no = 8
+ 10  AND course_no = 20));
+
+LAST_NAME                ||FIRST_NAME                                                                                             
+-------------------------||-------------------------                                                                              
+Limate                   ||Roy                                                                                                    
+Segall                   ||J.                                                                                                     
+
+SQL> 
+SQL> 
+SQL> REM ejemplo disinto del libro
+SQL> SELECT last_name, first_name
+  2  FROM student
+  3  WHERE student_id IN
+  4  (SELECT student_id
+  5  FROM enrollment
+  6  WHERE section_id IN
+  7  (SELECT section_id
+  8  FROM section
+  9  WHERE section_no = 8
+ 10  AND course_no IN (20, 30)));
+
+LAST_NAME                ||FIRST_NAME                                                                                             
+-------------------------||-------------------------                                                                              
+Limate                   ||Roy                                                                                                    
+Segall                   ||J.                                                                                                     
+
+SQL> 
+SQL> ------------------------------------------------------------------
+SQL> REM (A.Rischert,2009,332)
+SQL> REM 8.1 Exercises
+SQL> REM a) Write a SQL statement that displays the first and last names of the students who registered first.
+SQL> SELECT first_name, last_name
+  2  FROM student
+  3  WHERE registration_date =
+  4  (SELECT MIN(registration_date)
+  5  FROM student);
+
+FIRST_NAME               ||LAST_NAME                                                                                              
+-------------------------||-------------------------                                                                              
+Fred                     ||Crocitto                                                                                               
+J.                       ||Landry                                                                                                 
+Laetia                   ||Enison                                                                                                 
+Angel                    ||Moskowitz                                                                                              
+Judith                   ||Olvsade                                                                                                
+Catherine                ||Mierzwa                                                                                                
+Judy                     ||Sethi                                                                                                  
+Larry                    ||Walter                                                                                                 
+
+8 filas seleccionadas.
+
+SQL> 
+SQL> REM Ahora veamos que pasa con MAX
+SQL> SELECT first_name, last_name
+  2  FROM student
+  3  WHERE registration_date =
+  4  (SELECT MAX(registration_date)
+  5  FROM student);
+
+FIRST_NAME               ||LAST_NAME                                                                                              
+-------------------------||-------------------------                                                                              
+Joel                     ||Krot                                                                                                   
+Allan                    ||Simmons                                                                                                
+Michael                  ||Miroff                                                                                                 
+Roger                    ||Cowie                                                                                                  
+Asian                    ||Chirichella                                                                                            
+Yvonne                   ||Allende                                                                                                
+Sengita                  ||MacDonald, Jr.                                                                                         
+Paul                     ||Braun                                                                                                  
+Anna                     ||Bathmanapan                                                                                            
+Shirley                  ||Leung                                                                                                  
+V.                       ||Greenberg                                                                                              
+Rafael A.                ||Torres                                                                                                 
+V.                       ||Saliternan                                                                                             
+Melvin                   ||Martin                                                                                                 
+Vera                     ||Wetcel                                                                                                 
+James E.                 ||Norman                                                                                                 
+Margaret                 ||Lloyd                                                                                                  
+Jerry                    ||Abdou                                                                                                  
+
+18 filas seleccionadas.
+
+SQL> 
+SQL> REM Vemos que despliega desde mayor hasta los menores tambien
+SQL> 
+SQL> -----------------------------------------------------------------------
+SQL> REM (A.Rischert,2009,332)
+SQL> REM 8.1 Exercises
+SQL> REM b) Show the sections with the lowest course cost and a capacity equal to or lower than the average
+SQL> REM capacity. Also display the course description, section number, capacity, and cost.
+SQL> 
+SQL> SELECT c.description, s.section_no, c.cost, s.capacity
+  2  FROM course c, section s
+  3  WHERE c.course_no = s.course_no
+  4  AND s.capacity <=
+  5  (SELECT AVG(capacity)
+  6  FROM section)
+  7  AND c.cost =
+  8  (SELECT MIN(cost) FROM course);
+
+DESCRIPTION                                       ||SECTION_NO||     COST||  CAPACITY                                             
+--------------------------------------------------||----------||---------||----------                                             
+Unix Tips and Techniques                          ||         2|| 1,095.00||        15                                             
+Unix Tips and Techniques                          ||         4|| 1,095.00||        15                                             
+Intro to Internet                                 ||         1|| 1,095.00||        12                                             
+Intro to Internet                                 ||         2|| 1,095.00||        15                                             
+Intro to the Basic Language                       ||         1|| 1,095.00||        10                                             
+Intro to the Basic Language                       ||         2|| 1,095.00||        15                                             
+
+6 filas seleccionadas.
+
+SQL> REM Hagamos lo mismo con MAX
+SQL> SELECT c.description, s.section_no, c.cost, s.capacity
+  2  FROM course c, section s
+  3  WHERE c.course_no = s.course_no
+  4  AND s.capacity <=
+  5  (SELECT AVG(capacity)
+  6  FROM section)
+  7  AND c.cost =
+  8  (SELECT MAX(cost) FROM course);
+
+ninguna fila seleccionada
+
+SQL> 
+SQL> ---------------------------------------------------------------------
+SQL> REM (A.Rischert,2009,332)
+SQL> REM 8.1 Exercises
+SQL> REM c) Select the course number and total capacity for each course. Show only the courses with a total capacity less than the average capacity of all the sections.
+SQL> SELECT course_no, SUM(capacity)
+  2  FROM section
+  3  GROUP BY course_no
+  4  HAVING SUM(capacity) <
+  5  (SELECT AVG(capacity)
+  6  FROM section);
+
+ COURSE_NO||SUM(CAPACITY)                                                                                                         
+----------||-------------                                                                                                         
+        10||           15                                                                                                         
+       144||           15                                                                                                         
+
+SQL> SELECT course_no, SUM(capacity)
+  2  FROM section
+  3  GROUP BY course_no;
+
+ COURSE_NO||SUM(CAPACITY)                                                                                                         
+----------||-------------                                                                                                         
+        10||           15                                                                                                         
+        20||           80                                                                                                         
+        25||          205                                                                                                         
+       100||          105                                                                                                         
+       120||          130                                                                                                         
+       122||          105                                                                                                         
+       124||           80                                                                                                         
+       125||          105                                                                                                         
+       130||           80                                                                                                         
+       132||           50                                                                                                         
+       134||           65                                                                                                         
+       135||           80                                                                                                         
+       140||           65                                                                                                         
+       142||           65                                                                                                         
+       144||           15                                                                                                         
+       145||           50                                                                                                         
+       146||           40                                                                                                         
+       147||           25                                                                                                         
+       204||           25                                                                                                         
+       220||           25                                                                                                         
+       230||           27                                                                                                         
+       240||           25                                                                                                         
+       310||           25                                                                                                         
+       330||           25                                                                                                         
+       350||           65                                                                                                         
+       420||           25                                                                                                         
+       450||           25                                                                                                         
+
+27 filas seleccionadas.
+
+SQL> REM Facilmente obtenemos el promedio con
+SQL> SELECT AVG(capacity)
+  2  FROM section;
+
+AVG(CAPACITY)                                                                                                                     
+-------------                                                                                                                     
+   21.1298701                                                                                                                     
+
+SQL> spool off;

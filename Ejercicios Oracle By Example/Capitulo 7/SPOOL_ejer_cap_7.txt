@@ -1,0 +1,821 @@
+SQL> REM CAP 7
+SQL> 
+SQL> SET COLSEP '| * |'
+SQL> SET PAGESIZE 170
+SQL> SET LINESIZE 170
+SQL> SET NULL 's/Datos'
+SQL> 
+SQL> -----------------------------------------------------------------------
+SQL> REM (A.Rischert, 2009, 287)
+SQL> REM Course
+SQL> SELECT course.course_no, section_no, description,
+  2  location, instructor_id
+  3  FROM course, section
+  4  WHERE course.course_no = section.course_no;
+
+ COURSE_NO| * |SECTION_NO| * |DESCRIPTION                                       | * |LOCATION                                          | * |INSTRUCTOR_ID                 
+----------| * |----------| * |--------------------------------------------------| * |--------------------------------------------------| * |-------------                 
+        10| * |         2| * |DP Overview                                       | * |L214                                              | * |          102                 
+        20| * |         2| * |Intro to Computers                                | * |L210                                              | * |          103                 
+        20| * |         4| * |Intro to Computers                                | * |L214                                              | * |          104                 
+        20| * |         7| * |Intro to Computers                                | * |L509                                              | * |          105                 
+        20| * |         8| * |Intro to Computers                                | * |L210                                              | * |          106                 
+        25| * |         1| * |Intro to Programming                              | * |M311                                              | * |          107                 
+        25| * |         2| * |Intro to Programming                              | * |L210                                              | * |          108                 
+        25| * |         3| * |Intro to Programming                              | * |L507                                              | * |          101                 
+        25| * |         4| * |Intro to Programming                              | * |L214                                              | * |          102                 
+        25| * |         5| * |Intro to Programming                              | * |L509                                              | * |          103                 
+        25| * |         6| * |Intro to Programming                              | * |L509                                              | * |          104                 
+        25| * |         7| * |Intro to Programming                              | * |L210                                              | * |          105                 
+        25| * |         8| * |Intro to Programming                              | * |L509                                              | * |          106                 
+        25| * |         9| * |Intro to Programming                              | * |L507                                              | * |          107                 
+       100| * |         1| * |Hands-On Windows                                  | * |L214                                              | * |          102                 
+       100| * |         2| * |Hands-On Windows                                  | * |L500                                              | * |          103                 
+       100| * |         3| * |Hands-On Windows                                  | * |L509                                              | * |          104                 
+       100| * |         4| * |Hands-On Windows                                  | * |L507                                              | * |          105                 
+       100| * |         5| * |Hands-On Windows                                  | * |L214                                              | * |          106                 
+       120| * |         1| * |Intro to Java Programming                         | * |L507                                              | * |          107                 
+       120| * |         2| * |Intro to Java Programming                         | * |L206                                              | * |          108                 
+       120| * |         3| * |Intro to Java Programming                         | * |L509                                              | * |          101                 
+       120| * |         4| * |Intro to Java Programming                         | * |L509                                              | * |          102                 
+       120| * |         5| * |Intro to Java Programming                         | * |L210                                              | * |          103                 
+       120| * |         7| * |Intro to Java Programming                         | * |L507                                              | * |          104                 
+       122| * |         1| * |Intermediate Java Programming                     | * |M311                                              | * |          105                 
+       122| * |         2| * |Intermediate Java Programming                     | * |L211                                              | * |          106                 
+       122| * |         3| * |Intermediate Java Programming                     | * |L507                                              | * |          107                 
+       122| * |         4| * |Intermediate Java Programming                     | * |L210                                              | * |          108                 
+       122| * |         5| * |Intermediate Java Programming                     | * |L507                                              | * |          101                 
+       124| * |         1| * |Advanced Java Programming                         | * |M500                                              | * |          102                 
+       124| * |         2| * |Advanced Java Programming                         | * |H310                                              | * |          103                 
+       124| * |         3| * |Advanced Java Programming                         | * |L214                                              | * |          104                 
+       124| * |         4| * |Advanced Java Programming                         | * |L210                                              | * |          105                 
+       125| * |         1| * |JDeveloper                                        | * |L509                                              | * |          106                 
+       125| * |         2| * |JDeveloper                                        | * |L509                                              | * |          107                 
+       125| * |         3| * |JDeveloper                                        | * |L214                                              | * |          108                 
+       125| * |         4| * |JDeveloper                                        | * |L211                                              | * |          101                 
+       125| * |         6| * |JDeveloper                                        | * |L507                                              | * |          102                 
+       130| * |         1| * |Intro to Unix                                     | * |L507                                              | * |          103                 
+       130| * |         2| * |Intro to Unix                                     | * |L214                                              | * |          104                 
+       130| * |         3| * |Intro to Unix                                     | * |L509                                              | * |          105                 
+       130| * |         4| * |Intro to Unix                                     | * |L509                                              | * |          106                 
+       132| * |         1| * |Basics of Unix Admin                              | * |L509                                              | * |          107                 
+       132| * |         3| * |Basics of Unix Admin                              | * |L509                                              | * |          108                 
+       134| * |         2| * |Advanced Unix Admin                               | * |L509                                              | * |          102                 
+       134| * |         3| * |Advanced Unix Admin                               | * |L509                                              | * |          103                 
+       134| * |         1| * |Advanced Unix Admin                               | * |L509                                              | * |          101                 
+       135| * |         1| * |Unix Tips and Techniques                          | * |L509                                              | * |          104                 
+       135| * |         2| * |Unix Tips and Techniques                          | * |L214                                              | * |          105                 
+       135| * |         3| * |Unix Tips and Techniques                          | * |L509                                              | * |          106                 
+       135| * |         4| * |Unix Tips and Techniques                          | * |M200                                              | * |          107                 
+       140| * |         1| * |Structured Analysis                               | * |L509                                              | * |          108                 
+       140| * |         2| * |Structured Analysis                               | * |L210                                              | * |          101                 
+       140| * |         3| * |Structured Analysis                               | * |L507                                              | * |          102                 
+       142| * |         1| * |Project Management                                | * |L211                                              | * |          103                 
+       142| * |         2| * |Project Management                                | * |L214                                              | * |          104                 
+       142| * |         3| * |Project Management                                | * |L507                                              | * |          105                 
+       144| * |         2| * |Database Design                                   | * |L214                                              | * |          106                 
+       145| * |         1| * |Internet Protocols                                | * |L214                                              | * |          107                 
+       145| * |         3| * |Internet Protocols                                | * |L210                                              | * |          108                 
+       146| * |         2| * |Java for C/C++ Programmers                        | * |L507                                              | * |          102                 
+       146| * |         1| * |Java for C/C++ Programmers                        | * |L509                                              | * |          101                 
+       147| * |         1| * |GUI Programming                                   | * |L509                                              | * |          103                 
+       204| * |         1| * |Intro to SQL                                      | * |L210                                              | * |          104                 
+       220| * |         1| * |PL/SQL Programming                                | * |L509                                              | * |          106                 
+       230| * |         1| * |Intro to Internet                                 | * |L500                                              | * |          107                 
+       230| * |         2| * |Intro to Internet                                 | * |L214                                              | * |          108                 
+       240| * |         1| * |Intro to the Basic Language                       | * |L509                                              | * |          101                 
+       240| * |         2| * |Intro to the Basic Language                       | * |L214                                              | * |          102                 
+       310| * |         1| * |Operating Systems                                 | * |L507                                              | * |          103                 
+       330| * |         1| * |Network Administration                            | * |L511                                              | * |          104                 
+       350| * |         3| * |JDeveloper Lab                                    | * |L509                                              | * |          107                 
+       350| * |         1| * |JDeveloper Lab                                    | * |L509                                              | * |          105                 
+       350| * |         2| * |JDeveloper Lab                                    | * |L214                                              | * |          106                 
+       420| * |         1| * |Database System Principles                        | * |M311                                              | * |          108                 
+       450| * |         1| * |DB Programming in Java                            | * |L507                                              | * |          101                 
+
+77 filas seleccionadas.
+
+SQL> 
+SQL> REM ahora hacemos la consulta con los alias
+SQL> SELECT c.course_no, s.section_no, c.description,
+  2  s.location, s.instructor_id
+  3  FROM course c, section s
+  4  WHERE c.course_no = s.course_no;
+
+ COURSE_NO| * |SECTION_NO| * |DESCRIPTION                                       | * |LOCATION                                          | * |INSTRUCTOR_ID                 
+----------| * |----------| * |--------------------------------------------------| * |--------------------------------------------------| * |-------------                 
+        10| * |         2| * |DP Overview                                       | * |L214                                              | * |          102                 
+        20| * |         2| * |Intro to Computers                                | * |L210                                              | * |          103                 
+        20| * |         4| * |Intro to Computers                                | * |L214                                              | * |          104                 
+        20| * |         7| * |Intro to Computers                                | * |L509                                              | * |          105                 
+        20| * |         8| * |Intro to Computers                                | * |L210                                              | * |          106                 
+        25| * |         1| * |Intro to Programming                              | * |M311                                              | * |          107                 
+        25| * |         2| * |Intro to Programming                              | * |L210                                              | * |          108                 
+        25| * |         3| * |Intro to Programming                              | * |L507                                              | * |          101                 
+        25| * |         4| * |Intro to Programming                              | * |L214                                              | * |          102                 
+        25| * |         5| * |Intro to Programming                              | * |L509                                              | * |          103                 
+        25| * |         6| * |Intro to Programming                              | * |L509                                              | * |          104                 
+        25| * |         7| * |Intro to Programming                              | * |L210                                              | * |          105                 
+        25| * |         8| * |Intro to Programming                              | * |L509                                              | * |          106                 
+        25| * |         9| * |Intro to Programming                              | * |L507                                              | * |          107                 
+       100| * |         1| * |Hands-On Windows                                  | * |L214                                              | * |          102                 
+       100| * |         2| * |Hands-On Windows                                  | * |L500                                              | * |          103                 
+       100| * |         3| * |Hands-On Windows                                  | * |L509                                              | * |          104                 
+       100| * |         4| * |Hands-On Windows                                  | * |L507                                              | * |          105                 
+       100| * |         5| * |Hands-On Windows                                  | * |L214                                              | * |          106                 
+       120| * |         1| * |Intro to Java Programming                         | * |L507                                              | * |          107                 
+       120| * |         2| * |Intro to Java Programming                         | * |L206                                              | * |          108                 
+       120| * |         3| * |Intro to Java Programming                         | * |L509                                              | * |          101                 
+       120| * |         4| * |Intro to Java Programming                         | * |L509                                              | * |          102                 
+       120| * |         5| * |Intro to Java Programming                         | * |L210                                              | * |          103                 
+       120| * |         7| * |Intro to Java Programming                         | * |L507                                              | * |          104                 
+       122| * |         1| * |Intermediate Java Programming                     | * |M311                                              | * |          105                 
+       122| * |         2| * |Intermediate Java Programming                     | * |L211                                              | * |          106                 
+       122| * |         3| * |Intermediate Java Programming                     | * |L507                                              | * |          107                 
+       122| * |         4| * |Intermediate Java Programming                     | * |L210                                              | * |          108                 
+       122| * |         5| * |Intermediate Java Programming                     | * |L507                                              | * |          101                 
+       124| * |         1| * |Advanced Java Programming                         | * |M500                                              | * |          102                 
+       124| * |         2| * |Advanced Java Programming                         | * |H310                                              | * |          103                 
+       124| * |         3| * |Advanced Java Programming                         | * |L214                                              | * |          104                 
+       124| * |         4| * |Advanced Java Programming                         | * |L210                                              | * |          105                 
+       125| * |         1| * |JDeveloper                                        | * |L509                                              | * |          106                 
+       125| * |         2| * |JDeveloper                                        | * |L509                                              | * |          107                 
+       125| * |         3| * |JDeveloper                                        | * |L214                                              | * |          108                 
+       125| * |         4| * |JDeveloper                                        | * |L211                                              | * |          101                 
+       125| * |         6| * |JDeveloper                                        | * |L507                                              | * |          102                 
+       130| * |         1| * |Intro to Unix                                     | * |L507                                              | * |          103                 
+       130| * |         2| * |Intro to Unix                                     | * |L214                                              | * |          104                 
+       130| * |         3| * |Intro to Unix                                     | * |L509                                              | * |          105                 
+       130| * |         4| * |Intro to Unix                                     | * |L509                                              | * |          106                 
+       132| * |         1| * |Basics of Unix Admin                              | * |L509                                              | * |          107                 
+       132| * |         3| * |Basics of Unix Admin                              | * |L509                                              | * |          108                 
+       134| * |         2| * |Advanced Unix Admin                               | * |L509                                              | * |          102                 
+       134| * |         3| * |Advanced Unix Admin                               | * |L509                                              | * |          103                 
+       134| * |         1| * |Advanced Unix Admin                               | * |L509                                              | * |          101                 
+       135| * |         1| * |Unix Tips and Techniques                          | * |L509                                              | * |          104                 
+       135| * |         2| * |Unix Tips and Techniques                          | * |L214                                              | * |          105                 
+       135| * |         3| * |Unix Tips and Techniques                          | * |L509                                              | * |          106                 
+       135| * |         4| * |Unix Tips and Techniques                          | * |M200                                              | * |          107                 
+       140| * |         1| * |Structured Analysis                               | * |L509                                              | * |          108                 
+       140| * |         2| * |Structured Analysis                               | * |L210                                              | * |          101                 
+       140| * |         3| * |Structured Analysis                               | * |L507                                              | * |          102                 
+       142| * |         1| * |Project Management                                | * |L211                                              | * |          103                 
+       142| * |         2| * |Project Management                                | * |L214                                              | * |          104                 
+       142| * |         3| * |Project Management                                | * |L507                                              | * |          105                 
+       144| * |         2| * |Database Design                                   | * |L214                                              | * |          106                 
+       145| * |         1| * |Internet Protocols                                | * |L214                                              | * |          107                 
+       145| * |         3| * |Internet Protocols                                | * |L210                                              | * |          108                 
+       146| * |         2| * |Java for C/C++ Programmers                        | * |L507                                              | * |          102                 
+       146| * |         1| * |Java for C/C++ Programmers                        | * |L509                                              | * |          101                 
+       147| * |         1| * |GUI Programming                                   | * |L509                                              | * |          103                 
+       204| * |         1| * |Intro to SQL                                      | * |L210                                              | * |          104                 
+       220| * |         1| * |PL/SQL Programming                                | * |L509                                              | * |          106                 
+       230| * |         1| * |Intro to Internet                                 | * |L500                                              | * |          107                 
+       230| * |         2| * |Intro to Internet                                 | * |L214                                              | * |          108                 
+       240| * |         1| * |Intro to the Basic Language                       | * |L509                                              | * |          101                 
+       240| * |         2| * |Intro to the Basic Language                       | * |L214                                              | * |          102                 
+       310| * |         1| * |Operating Systems                                 | * |L507                                              | * |          103                 
+       330| * |         1| * |Network Administration                            | * |L511                                              | * |          104                 
+       350| * |         3| * |JDeveloper Lab                                    | * |L509                                              | * |          107                 
+       350| * |         1| * |JDeveloper Lab                                    | * |L509                                              | * |          105                 
+       350| * |         2| * |JDeveloper Lab                                    | * |L214                                              | * |          106                 
+       420| * |         1| * |Database System Principles                        | * |M311                                              | * |          108                 
+       450| * |         1| * |DB Programming in Java                            | * |L507                                              | * |          101                 
+
+77 filas seleccionadas.
+
+SQL> 
+SQL> --------------------------------------------------------------------------
+SQL> REM (A.Rischert, 2009, 288)
+SQL> REM REDUCCION DEL CONJUNTO DE RESULTADOS
+SQL> 
+SQL> SELECT c.course_no, s.section_no, c.description,
+  2  s.location, s.instructor_id
+  3  FROM course c, section s
+  4  WHERE c.course_no = s.course_no
+  5  AND c.description LIKE 'Intro to%';
+
+ COURSE_NO| * |SECTION_NO| * |DESCRIPTION                                       | * |LOCATION                                          | * |INSTRUCTOR_ID                 
+----------| * |----------| * |--------------------------------------------------| * |--------------------------------------------------| * |-------------                 
+        20| * |         2| * |Intro to Computers                                | * |L210                                              | * |          103                 
+        20| * |         4| * |Intro to Computers                                | * |L214                                              | * |          104                 
+        20| * |         7| * |Intro to Computers                                | * |L509                                              | * |          105                 
+        20| * |         8| * |Intro to Computers                                | * |L210                                              | * |          106                 
+        25| * |         1| * |Intro to Programming                              | * |M311                                              | * |          107                 
+        25| * |         2| * |Intro to Programming                              | * |L210                                              | * |          108                 
+        25| * |         3| * |Intro to Programming                              | * |L507                                              | * |          101                 
+        25| * |         4| * |Intro to Programming                              | * |L214                                              | * |          102                 
+        25| * |         5| * |Intro to Programming                              | * |L509                                              | * |          103                 
+        25| * |         6| * |Intro to Programming                              | * |L509                                              | * |          104                 
+        25| * |         7| * |Intro to Programming                              | * |L210                                              | * |          105                 
+        25| * |         8| * |Intro to Programming                              | * |L509                                              | * |          106                 
+        25| * |         9| * |Intro to Programming                              | * |L507                                              | * |          107                 
+       120| * |         1| * |Intro to Java Programming                         | * |L507                                              | * |          107                 
+       120| * |         2| * |Intro to Java Programming                         | * |L206                                              | * |          108                 
+       120| * |         3| * |Intro to Java Programming                         | * |L509                                              | * |          101                 
+       120| * |         4| * |Intro to Java Programming                         | * |L509                                              | * |          102                 
+       120| * |         5| * |Intro to Java Programming                         | * |L210                                              | * |          103                 
+       120| * |         7| * |Intro to Java Programming                         | * |L507                                              | * |          104                 
+       130| * |         1| * |Intro to Unix                                     | * |L507                                              | * |          103                 
+       130| * |         2| * |Intro to Unix                                     | * |L214                                              | * |          104                 
+       130| * |         3| * |Intro to Unix                                     | * |L509                                              | * |          105                 
+       130| * |         4| * |Intro to Unix                                     | * |L509                                              | * |          106                 
+       204| * |         1| * |Intro to SQL                                      | * |L210                                              | * |          104                 
+       230| * |         1| * |Intro to Internet                                 | * |L500                                              | * |          107                 
+       230| * |         2| * |Intro to Internet                                 | * |L214                                              | * |          108                 
+       240| * |         1| * |Intro to the Basic Language                       | * |L509                                              | * |          101                 
+       240| * |         2| * |Intro to the Basic Language                       | * |L214                                              | * |          102                 
+
+28 filas seleccionadas.
+
+SQL> 
+SQL> -----------------------------------------------------------------------
+SQL> REM (A.Rischert, 2009, 305)
+SQL> REM ANSI Join Syntax for Joining Three or More Tables
+SQL> 
+SQL> SELECT c.course_no, s.section_no, c.description, s.location,
+  2  s.instructor_id, i.last_name, i.first_name
+  3  FROM course c JOIN section s
+  4  ON (c.course_no = s.course_no)
+  5  JOIN instructor i
+  6  ON (s.instructor_id = i.instructor_id);
+
+ COURSE_NO| * |SECTION_NO| * |DESCRIPTION                                       | * |LOCATION                                          | * |INSTRUCTOR_ID                 
+----------| * |----------| * |--------------------------------------------------| * |--------------------------------------------------| * |-------------                 
+LAST_NAME                | * |FIRST_NAME                                                                                                                                  
+-------------------------| * |-------------------------                                                                                                                   
+        25| * |         3| * |Intro to Programming                              | * |L507                                              | * |          101                 
+Hanks                    | * |Fernand                                                                                                                                     
+                                                                                                                                                                          
+       240| * |         1| * |Intro to the Basic Language                       | * |L509                                              | * |          101                 
+Hanks                    | * |Fernand                                                                                                                                     
+                                                                                                                                                                          
+       450| * |         1| * |DB Programming in Java                            | * |L507                                              | * |          101                 
+Hanks                    | * |Fernand                                                                                                                                     
+                                                                                                                                                                          
+       140| * |         2| * |Structured Analysis                               | * |L210                                              | * |          101                 
+Hanks                    | * |Fernand                                                                                                                                     
+                                                                                                                                                                          
+       146| * |         1| * |Java for C/C++ Programmers                        | * |L509                                              | * |          101                 
+Hanks                    | * |Fernand                                                                                                                                     
+                                                                                                                                                                          
+       125| * |         4| * |JDeveloper                                        | * |L211                                              | * |          101                 
+Hanks                    | * |Fernand                                                                                                                                     
+                                                                                                                                                                          
+       134| * |         1| * |Advanced Unix Admin                               | * |L509                                              | * |          101                 
+Hanks                    | * |Fernand                                                                                                                                     
+                                                                                                                                                                          
+       120| * |         3| * |Intro to Java Programming                         | * |L509                                              | * |          101                 
+Hanks                    | * |Fernand                                                                                                                                     
+                                                                                                                                                                          
+       122| * |         5| * |Intermediate Java Programming                     | * |L507                                              | * |          101                 
+Hanks                    | * |Fernand                                                                                                                                     
+                                                                                                                                                                          
+        10| * |         2| * |DP Overview                                       | * |L214                                              | * |          102                 
+Wojick                   | * |Tom                                                                                                                                         
+                                                                                                                                                                          
+        25| * |         4| * |Intro to Programming                              | * |L214                                              | * |          102                 
+Wojick                   | * |Tom                                                                                                                                         
+                                                                                                                                                                          
+       146| * |         2| * |Java for C/C++ Programmers                        | * |L507                                              | * |          102                 
+Wojick                   | * |Tom                                                                                                                                         
+                                                                                                                                                                          
+       240| * |         2| * |Intro to the Basic Language                       | * |L214                                              | * |          102                 
+Wojick                   | * |Tom                                                                                                                                         
+                                                                                                                                                                          
+       134| * |         2| * |Advanced Unix Admin                               | * |L509                                              | * |          102                 
+Wojick                   | * |Tom                                                                                                                                         
+                                                                                                                                                                          
+       140| * |         3| * |Structured Analysis                               | * |L507                                              | * |          102                 
+Wojick                   | * |Tom                                                                                                                                         
+                                                                                                                                                                          
+       124| * |         1| * |Advanced Java Programming                         | * |M500                                              | * |          102                 
+Wojick                   | * |Tom                                                                                                                                         
+                                                                                                                                                                          
+       125| * |         6| * |JDeveloper                                        | * |L507                                              | * |          102                 
+Wojick                   | * |Tom                                                                                                                                         
+                                                                                                                                                                          
+       100| * |         1| * |Hands-On Windows                                  | * |L214                                              | * |          102                 
+Wojick                   | * |Tom                                                                                                                                         
+                                                                                                                                                                          
+       120| * |         4| * |Intro to Java Programming                         | * |L509                                              | * |          102                 
+Wojick                   | * |Tom                                                                                                                                         
+                                                                                                                                                                          
+        20| * |         2| * |Intro to Computers                                | * |L210                                              | * |          103                 
+Schorin                  | * |Nina                                                                                                                                        
+                                                                                                                                                                          
+        25| * |         5| * |Intro to Programming                              | * |L509                                              | * |          103                 
+Schorin                  | * |Nina                                                                                                                                        
+                                                                                                                                                                          
+       147| * |         1| * |GUI Programming                                   | * |L509                                              | * |          103                 
+Schorin                  | * |Nina                                                                                                                                        
+                                                                                                                                                                          
+       310| * |         1| * |Operating Systems                                 | * |L507                                              | * |          103                 
+Schorin                  | * |Nina                                                                                                                                        
+                                                                                                                                                                          
+       130| * |         1| * |Intro to Unix                                     | * |L507                                              | * |          103                 
+Schorin                  | * |Nina                                                                                                                                        
+                                                                                                                                                                          
+       134| * |         3| * |Advanced Unix Admin                               | * |L509                                              | * |          103                 
+Schorin                  | * |Nina                                                                                                                                        
+                                                                                                                                                                          
+       142| * |         1| * |Project Management                                | * |L211                                              | * |          103                 
+Schorin                  | * |Nina                                                                                                                                        
+                                                                                                                                                                          
+       124| * |         2| * |Advanced Java Programming                         | * |H310                                              | * |          103                 
+Schorin                  | * |Nina                                                                                                                                        
+                                                                                                                                                                          
+       100| * |         2| * |Hands-On Windows                                  | * |L500                                              | * |          103                 
+Schorin                  | * |Nina                                                                                                                                        
+                                                                                                                                                                          
+       120| * |         5| * |Intro to Java Programming                         | * |L210                                              | * |          103                 
+Schorin                  | * |Nina                                                                                                                                        
+                                                                                                                                                                          
+        20| * |         4| * |Intro to Computers                                | * |L214                                              | * |          104                 
+Pertez                   | * |Gary                                                                                                                                        
+                                                                                                                                                                          
+        25| * |         6| * |Intro to Programming                              | * |L509                                              | * |          104                 
+Pertez                   | * |Gary                                                                                                                                        
+                                                                                                                                                                          
+       204| * |         1| * |Intro to SQL                                      | * |L210                                              | * |          104                 
+Pertez                   | * |Gary                                                                                                                                        
+                                                                                                                                                                          
+       330| * |         1| * |Network Administration                            | * |L511                                              | * |          104                 
+Pertez                   | * |Gary                                                                                                                                        
+                                                                                                                                                                          
+       135| * |         1| * |Unix Tips and Techniques                          | * |L509                                              | * |          104                 
+Pertez                   | * |Gary                                                                                                                                        
+                                                                                                                                                                          
+       142| * |         2| * |Project Management                                | * |L214                                              | * |          104                 
+Pertez                   | * |Gary                                                                                                                                        
+                                                                                                                                                                          
+       124| * |         3| * |Advanced Java Programming                         | * |L214                                              | * |          104                 
+Pertez                   | * |Gary                                                                                                                                        
+                                                                                                                                                                          
+       130| * |         2| * |Intro to Unix                                     | * |L214                                              | * |          104                 
+Pertez                   | * |Gary                                                                                                                                        
+                                                                                                                                                                          
+       100| * |         3| * |Hands-On Windows                                  | * |L509                                              | * |          104                 
+Pertez                   | * |Gary                                                                                                                                        
+                                                                                                                                                                          
+       120| * |         7| * |Intro to Java Programming                         | * |L507                                              | * |          104                 
+Pertez                   | * |Gary                                                                                                                                        
+                                                                                                                                                                          
+        20| * |         7| * |Intro to Computers                                | * |L509                                              | * |          105                 
+Morris                   | * |Anita                                                                                                                                       
+                                                                                                                                                                          
+        25| * |         7| * |Intro to Programming                              | * |L210                                              | * |          105                 
+Morris                   | * |Anita                                                                                                                                       
+                                                                                                                                                                          
+       350| * |         1| * |JDeveloper Lab                                    | * |L509                                              | * |          105                 
+Morris                   | * |Anita                                                                                                                                       
+                                                                                                                                                                          
+       135| * |         2| * |Unix Tips and Techniques                          | * |L214                                              | * |          105                 
+Morris                   | * |Anita                                                                                                                                       
+                                                                                                                                                                          
+       142| * |         3| * |Project Management                                | * |L507                                              | * |          105                 
+Morris                   | * |Anita                                                                                                                                       
+                                                                                                                                                                          
+       124| * |         4| * |Advanced Java Programming                         | * |L210                                              | * |          105                 
+Morris                   | * |Anita                                                                                                                                       
+                                                                                                                                                                          
+       130| * |         3| * |Intro to Unix                                     | * |L509                                              | * |          105                 
+Morris                   | * |Anita                                                                                                                                       
+                                                                                                                                                                          
+       100| * |         4| * |Hands-On Windows                                  | * |L507                                              | * |          105                 
+Morris                   | * |Anita                                                                                                                                       
+                                                                                                                                                                          
+       122| * |         1| * |Intermediate Java Programming                     | * |M311                                              | * |          105                 
+Morris                   | * |Anita                                                                                                                                       
+                                                                                                                                                                          
+        20| * |         8| * |Intro to Computers                                | * |L210                                              | * |          106                 
+Smythe                   | * |Todd                                                                                                                                        
+                                                                                                                                                                          
+        25| * |         8| * |Intro to Programming                              | * |L509                                              | * |          106                 
+Smythe                   | * |Todd                                                                                                                                        
+                                                                                                                                                                          
+       220| * |         1| * |PL/SQL Programming                                | * |L509                                              | * |          106                 
+Smythe                   | * |Todd                                                                                                                                        
+                                                                                                                                                                          
+       350| * |         2| * |JDeveloper Lab                                    | * |L214                                              | * |          106                 
+Smythe                   | * |Todd                                                                                                                                        
+                                                                                                                                                                          
+       135| * |         3| * |Unix Tips and Techniques                          | * |L509                                              | * |          106                 
+Smythe                   | * |Todd                                                                                                                                        
+                                                                                                                                                                          
+       144| * |         2| * |Database Design                                   | * |L214                                              | * |          106                 
+Smythe                   | * |Todd                                                                                                                                        
+                                                                                                                                                                          
+       125| * |         1| * |JDeveloper                                        | * |L509                                              | * |          106                 
+Smythe                   | * |Todd                                                                                                                                        
+                                                                                                                                                                          
+
+ COURSE_NO| * |SECTION_NO| * |DESCRIPTION                                       | * |LOCATION                                          | * |INSTRUCTOR_ID                 
+----------| * |----------| * |--------------------------------------------------| * |--------------------------------------------------| * |-------------                 
+LAST_NAME                | * |FIRST_NAME                                                                                                                                  
+-------------------------| * |-------------------------                                                                                                                   
+       130| * |         4| * |Intro to Unix                                     | * |L509                                              | * |          106                 
+Smythe                   | * |Todd                                                                                                                                        
+                                                                                                                                                                          
+       100| * |         5| * |Hands-On Windows                                  | * |L214                                              | * |          106                 
+Smythe                   | * |Todd                                                                                                                                        
+                                                                                                                                                                          
+       122| * |         2| * |Intermediate Java Programming                     | * |L211                                              | * |          106                 
+Smythe                   | * |Todd                                                                                                                                        
+                                                                                                                                                                          
+       350| * |         3| * |JDeveloper Lab                                    | * |L509                                              | * |          107                 
+Frantzen                 | * |Marilyn                                                                                                                                     
+                                                                                                                                                                          
+        25| * |         1| * |Intro to Programming                              | * |M311                                              | * |          107                 
+Frantzen                 | * |Marilyn                                                                                                                                     
+                                                                                                                                                                          
+        25| * |         9| * |Intro to Programming                              | * |L507                                              | * |          107                 
+Frantzen                 | * |Marilyn                                                                                                                                     
+                                                                                                                                                                          
+       230| * |         1| * |Intro to Internet                                 | * |L500                                              | * |          107                 
+Frantzen                 | * |Marilyn                                                                                                                                     
+                                                                                                                                                                          
+       135| * |         4| * |Unix Tips and Techniques                          | * |M200                                              | * |          107                 
+Frantzen                 | * |Marilyn                                                                                                                                     
+                                                                                                                                                                          
+       145| * |         1| * |Internet Protocols                                | * |L214                                              | * |          107                 
+Frantzen                 | * |Marilyn                                                                                                                                     
+                                                                                                                                                                          
+       125| * |         2| * |JDeveloper                                        | * |L509                                              | * |          107                 
+Frantzen                 | * |Marilyn                                                                                                                                     
+                                                                                                                                                                          
+       132| * |         1| * |Basics of Unix Admin                              | * |L509                                              | * |          107                 
+Frantzen                 | * |Marilyn                                                                                                                                     
+                                                                                                                                                                          
+       120| * |         1| * |Intro to Java Programming                         | * |L507                                              | * |          107                 
+Frantzen                 | * |Marilyn                                                                                                                                     
+                                                                                                                                                                          
+       122| * |         3| * |Intermediate Java Programming                     | * |L507                                              | * |          107                 
+Frantzen                 | * |Marilyn                                                                                                                                     
+                                                                                                                                                                          
+        25| * |         2| * |Intro to Programming                              | * |L210                                              | * |          108                 
+Lowry                    | * |Charles                                                                                                                                     
+                                                                                                                                                                          
+       230| * |         2| * |Intro to Internet                                 | * |L214                                              | * |          108                 
+Lowry                    | * |Charles                                                                                                                                     
+                                                                                                                                                                          
+       420| * |         1| * |Database System Principles                        | * |M311                                              | * |          108                 
+Lowry                    | * |Charles                                                                                                                                     
+                                                                                                                                                                          
+       140| * |         1| * |Structured Analysis                               | * |L509                                              | * |          108                 
+Lowry                    | * |Charles                                                                                                                                     
+                                                                                                                                                                          
+       145| * |         3| * |Internet Protocols                                | * |L210                                              | * |          108                 
+Lowry                    | * |Charles                                                                                                                                     
+                                                                                                                                                                          
+       125| * |         3| * |JDeveloper                                        | * |L214                                              | * |          108                 
+Lowry                    | * |Charles                                                                                                                                     
+                                                                                                                                                                          
+       132| * |         3| * |Basics of Unix Admin                              | * |L509                                              | * |          108                 
+Lowry                    | * |Charles                                                                                                                                     
+                                                                                                                                                                          
+       120| * |         2| * |Intro to Java Programming                         | * |L206                                              | * |          108                 
+Lowry                    | * |Charles                                                                                                                                     
+                                                                                                                                                                          
+       122| * |         4| * |Intermediate Java Programming                     | * |L210                                              | * |          108                 
+Lowry                    | * |Charles                                                                                                                                     
+                                                                                                                                                                          
+
+77 filas seleccionadas.
+
+SQL> 
+SQL> REM Una manera alternativa es con la clausula USING
+SQL> 
+SQL> SELECT course_no, s.section_no, c.description, s.location,
+  2  instructor_id, i.last_name, i.first_name
+  3  FROM course c JOIN section s
+  4  USING (course_no)
+  5  JOIN instructor i
+  6  USING (instructor_id);
+
+ COURSE_NO| * |SECTION_NO| * |DESCRIPTION                                       | * |LOCATION                                          | * |INSTRUCTOR_ID                 
+----------| * |----------| * |--------------------------------------------------| * |--------------------------------------------------| * |-------------                 
+LAST_NAME                | * |FIRST_NAME                                                                                                                                  
+-------------------------| * |-------------------------                                                                                                                   
+        25| * |         3| * |Intro to Programming                              | * |L507                                              | * |          101                 
+Hanks                    | * |Fernand                                                                                                                                     
+                                                                                                                                                                          
+       240| * |         1| * |Intro to the Basic Language                       | * |L509                                              | * |          101                 
+Hanks                    | * |Fernand                                                                                                                                     
+                                                                                                                                                                          
+       450| * |         1| * |DB Programming in Java                            | * |L507                                              | * |          101                 
+Hanks                    | * |Fernand                                                                                                                                     
+                                                                                                                                                                          
+       140| * |         2| * |Structured Analysis                               | * |L210                                              | * |          101                 
+Hanks                    | * |Fernand                                                                                                                                     
+                                                                                                                                                                          
+       146| * |         1| * |Java for C/C++ Programmers                        | * |L509                                              | * |          101                 
+Hanks                    | * |Fernand                                                                                                                                     
+                                                                                                                                                                          
+       125| * |         4| * |JDeveloper                                        | * |L211                                              | * |          101                 
+Hanks                    | * |Fernand                                                                                                                                     
+                                                                                                                                                                          
+       134| * |         1| * |Advanced Unix Admin                               | * |L509                                              | * |          101                 
+Hanks                    | * |Fernand                                                                                                                                     
+                                                                                                                                                                          
+       120| * |         3| * |Intro to Java Programming                         | * |L509                                              | * |          101                 
+Hanks                    | * |Fernand                                                                                                                                     
+                                                                                                                                                                          
+       122| * |         5| * |Intermediate Java Programming                     | * |L507                                              | * |          101                 
+Hanks                    | * |Fernand                                                                                                                                     
+                                                                                                                                                                          
+        10| * |         2| * |DP Overview                                       | * |L214                                              | * |          102                 
+Wojick                   | * |Tom                                                                                                                                         
+                                                                                                                                                                          
+        25| * |         4| * |Intro to Programming                              | * |L214                                              | * |          102                 
+Wojick                   | * |Tom                                                                                                                                         
+                                                                                                                                                                          
+       146| * |         2| * |Java for C/C++ Programmers                        | * |L507                                              | * |          102                 
+Wojick                   | * |Tom                                                                                                                                         
+                                                                                                                                                                          
+       240| * |         2| * |Intro to the Basic Language                       | * |L214                                              | * |          102                 
+Wojick                   | * |Tom                                                                                                                                         
+                                                                                                                                                                          
+       134| * |         2| * |Advanced Unix Admin                               | * |L509                                              | * |          102                 
+Wojick                   | * |Tom                                                                                                                                         
+                                                                                                                                                                          
+       140| * |         3| * |Structured Analysis                               | * |L507                                              | * |          102                 
+Wojick                   | * |Tom                                                                                                                                         
+                                                                                                                                                                          
+       124| * |         1| * |Advanced Java Programming                         | * |M500                                              | * |          102                 
+Wojick                   | * |Tom                                                                                                                                         
+                                                                                                                                                                          
+       125| * |         6| * |JDeveloper                                        | * |L507                                              | * |          102                 
+Wojick                   | * |Tom                                                                                                                                         
+                                                                                                                                                                          
+       100| * |         1| * |Hands-On Windows                                  | * |L214                                              | * |          102                 
+Wojick                   | * |Tom                                                                                                                                         
+                                                                                                                                                                          
+       120| * |         4| * |Intro to Java Programming                         | * |L509                                              | * |          102                 
+Wojick                   | * |Tom                                                                                                                                         
+                                                                                                                                                                          
+        20| * |         2| * |Intro to Computers                                | * |L210                                              | * |          103                 
+Schorin                  | * |Nina                                                                                                                                        
+                                                                                                                                                                          
+        25| * |         5| * |Intro to Programming                              | * |L509                                              | * |          103                 
+Schorin                  | * |Nina                                                                                                                                        
+                                                                                                                                                                          
+       147| * |         1| * |GUI Programming                                   | * |L509                                              | * |          103                 
+Schorin                  | * |Nina                                                                                                                                        
+                                                                                                                                                                          
+       310| * |         1| * |Operating Systems                                 | * |L507                                              | * |          103                 
+Schorin                  | * |Nina                                                                                                                                        
+                                                                                                                                                                          
+       130| * |         1| * |Intro to Unix                                     | * |L507                                              | * |          103                 
+Schorin                  | * |Nina                                                                                                                                        
+                                                                                                                                                                          
+       134| * |         3| * |Advanced Unix Admin                               | * |L509                                              | * |          103                 
+Schorin                  | * |Nina                                                                                                                                        
+                                                                                                                                                                          
+       142| * |         1| * |Project Management                                | * |L211                                              | * |          103                 
+Schorin                  | * |Nina                                                                                                                                        
+                                                                                                                                                                          
+       124| * |         2| * |Advanced Java Programming                         | * |H310                                              | * |          103                 
+Schorin                  | * |Nina                                                                                                                                        
+                                                                                                                                                                          
+       100| * |         2| * |Hands-On Windows                                  | * |L500                                              | * |          103                 
+Schorin                  | * |Nina                                                                                                                                        
+                                                                                                                                                                          
+       120| * |         5| * |Intro to Java Programming                         | * |L210                                              | * |          103                 
+Schorin                  | * |Nina                                                                                                                                        
+                                                                                                                                                                          
+        20| * |         4| * |Intro to Computers                                | * |L214                                              | * |          104                 
+Pertez                   | * |Gary                                                                                                                                        
+                                                                                                                                                                          
+        25| * |         6| * |Intro to Programming                              | * |L509                                              | * |          104                 
+Pertez                   | * |Gary                                                                                                                                        
+                                                                                                                                                                          
+       204| * |         1| * |Intro to SQL                                      | * |L210                                              | * |          104                 
+Pertez                   | * |Gary                                                                                                                                        
+                                                                                                                                                                          
+       330| * |         1| * |Network Administration                            | * |L511                                              | * |          104                 
+Pertez                   | * |Gary                                                                                                                                        
+                                                                                                                                                                          
+       135| * |         1| * |Unix Tips and Techniques                          | * |L509                                              | * |          104                 
+Pertez                   | * |Gary                                                                                                                                        
+                                                                                                                                                                          
+       142| * |         2| * |Project Management                                | * |L214                                              | * |          104                 
+Pertez                   | * |Gary                                                                                                                                        
+                                                                                                                                                                          
+       124| * |         3| * |Advanced Java Programming                         | * |L214                                              | * |          104                 
+Pertez                   | * |Gary                                                                                                                                        
+                                                                                                                                                                          
+       130| * |         2| * |Intro to Unix                                     | * |L214                                              | * |          104                 
+Pertez                   | * |Gary                                                                                                                                        
+                                                                                                                                                                          
+       100| * |         3| * |Hands-On Windows                                  | * |L509                                              | * |          104                 
+Pertez                   | * |Gary                                                                                                                                        
+                                                                                                                                                                          
+       120| * |         7| * |Intro to Java Programming                         | * |L507                                              | * |          104                 
+Pertez                   | * |Gary                                                                                                                                        
+                                                                                                                                                                          
+        20| * |         7| * |Intro to Computers                                | * |L509                                              | * |          105                 
+Morris                   | * |Anita                                                                                                                                       
+                                                                                                                                                                          
+        25| * |         7| * |Intro to Programming                              | * |L210                                              | * |          105                 
+Morris                   | * |Anita                                                                                                                                       
+                                                                                                                                                                          
+       350| * |         1| * |JDeveloper Lab                                    | * |L509                                              | * |          105                 
+Morris                   | * |Anita                                                                                                                                       
+                                                                                                                                                                          
+       135| * |         2| * |Unix Tips and Techniques                          | * |L214                                              | * |          105                 
+Morris                   | * |Anita                                                                                                                                       
+                                                                                                                                                                          
+       142| * |         3| * |Project Management                                | * |L507                                              | * |          105                 
+Morris                   | * |Anita                                                                                                                                       
+                                                                                                                                                                          
+       124| * |         4| * |Advanced Java Programming                         | * |L210                                              | * |          105                 
+Morris                   | * |Anita                                                                                                                                       
+                                                                                                                                                                          
+       130| * |         3| * |Intro to Unix                                     | * |L509                                              | * |          105                 
+Morris                   | * |Anita                                                                                                                                       
+                                                                                                                                                                          
+       100| * |         4| * |Hands-On Windows                                  | * |L507                                              | * |          105                 
+Morris                   | * |Anita                                                                                                                                       
+                                                                                                                                                                          
+       122| * |         1| * |Intermediate Java Programming                     | * |M311                                              | * |          105                 
+Morris                   | * |Anita                                                                                                                                       
+                                                                                                                                                                          
+        20| * |         8| * |Intro to Computers                                | * |L210                                              | * |          106                 
+Smythe                   | * |Todd                                                                                                                                        
+                                                                                                                                                                          
+        25| * |         8| * |Intro to Programming                              | * |L509                                              | * |          106                 
+Smythe                   | * |Todd                                                                                                                                        
+                                                                                                                                                                          
+       220| * |         1| * |PL/SQL Programming                                | * |L509                                              | * |          106                 
+Smythe                   | * |Todd                                                                                                                                        
+                                                                                                                                                                          
+       350| * |         2| * |JDeveloper Lab                                    | * |L214                                              | * |          106                 
+Smythe                   | * |Todd                                                                                                                                        
+                                                                                                                                                                          
+       135| * |         3| * |Unix Tips and Techniques                          | * |L509                                              | * |          106                 
+Smythe                   | * |Todd                                                                                                                                        
+                                                                                                                                                                          
+       144| * |         2| * |Database Design                                   | * |L214                                              | * |          106                 
+Smythe                   | * |Todd                                                                                                                                        
+                                                                                                                                                                          
+       125| * |         1| * |JDeveloper                                        | * |L509                                              | * |          106                 
+Smythe                   | * |Todd                                                                                                                                        
+                                                                                                                                                                          
+
+ COURSE_NO| * |SECTION_NO| * |DESCRIPTION                                       | * |LOCATION                                          | * |INSTRUCTOR_ID                 
+----------| * |----------| * |--------------------------------------------------| * |--------------------------------------------------| * |-------------                 
+LAST_NAME                | * |FIRST_NAME                                                                                                                                  
+-------------------------| * |-------------------------                                                                                                                   
+       130| * |         4| * |Intro to Unix                                     | * |L509                                              | * |          106                 
+Smythe                   | * |Todd                                                                                                                                        
+                                                                                                                                                                          
+       100| * |         5| * |Hands-On Windows                                  | * |L214                                              | * |          106                 
+Smythe                   | * |Todd                                                                                                                                        
+                                                                                                                                                                          
+       122| * |         2| * |Intermediate Java Programming                     | * |L211                                              | * |          106                 
+Smythe                   | * |Todd                                                                                                                                        
+                                                                                                                                                                          
+       350| * |         3| * |JDeveloper Lab                                    | * |L509                                              | * |          107                 
+Frantzen                 | * |Marilyn                                                                                                                                     
+                                                                                                                                                                          
+        25| * |         1| * |Intro to Programming                              | * |M311                                              | * |          107                 
+Frantzen                 | * |Marilyn                                                                                                                                     
+                                                                                                                                                                          
+        25| * |         9| * |Intro to Programming                              | * |L507                                              | * |          107                 
+Frantzen                 | * |Marilyn                                                                                                                                     
+                                                                                                                                                                          
+       230| * |         1| * |Intro to Internet                                 | * |L500                                              | * |          107                 
+Frantzen                 | * |Marilyn                                                                                                                                     
+                                                                                                                                                                          
+       135| * |         4| * |Unix Tips and Techniques                          | * |M200                                              | * |          107                 
+Frantzen                 | * |Marilyn                                                                                                                                     
+                                                                                                                                                                          
+       145| * |         1| * |Internet Protocols                                | * |L214                                              | * |          107                 
+Frantzen                 | * |Marilyn                                                                                                                                     
+                                                                                                                                                                          
+       125| * |         2| * |JDeveloper                                        | * |L509                                              | * |          107                 
+Frantzen                 | * |Marilyn                                                                                                                                     
+                                                                                                                                                                          
+       132| * |         1| * |Basics of Unix Admin                              | * |L509                                              | * |          107                 
+Frantzen                 | * |Marilyn                                                                                                                                     
+                                                                                                                                                                          
+       120| * |         1| * |Intro to Java Programming                         | * |L507                                              | * |          107                 
+Frantzen                 | * |Marilyn                                                                                                                                     
+                                                                                                                                                                          
+       122| * |         3| * |Intermediate Java Programming                     | * |L507                                              | * |          107                 
+Frantzen                 | * |Marilyn                                                                                                                                     
+                                                                                                                                                                          
+        25| * |         2| * |Intro to Programming                              | * |L210                                              | * |          108                 
+Lowry                    | * |Charles                                                                                                                                     
+                                                                                                                                                                          
+       230| * |         2| * |Intro to Internet                                 | * |L214                                              | * |          108                 
+Lowry                    | * |Charles                                                                                                                                     
+                                                                                                                                                                          
+       420| * |         1| * |Database System Principles                        | * |M311                                              | * |          108                 
+Lowry                    | * |Charles                                                                                                                                     
+                                                                                                                                                                          
+       140| * |         1| * |Structured Analysis                               | * |L509                                              | * |          108                 
+Lowry                    | * |Charles                                                                                                                                     
+                                                                                                                                                                          
+       145| * |         3| * |Internet Protocols                                | * |L210                                              | * |          108                 
+Lowry                    | * |Charles                                                                                                                                     
+                                                                                                                                                                          
+       125| * |         3| * |JDeveloper                                        | * |L214                                              | * |          108                 
+Lowry                    | * |Charles                                                                                                                                     
+                                                                                                                                                                          
+       132| * |         3| * |Basics of Unix Admin                              | * |L509                                              | * |          108                 
+Lowry                    | * |Charles                                                                                                                                     
+                                                                                                                                                                          
+       120| * |         2| * |Intro to Java Programming                         | * |L206                                              | * |          108                 
+Lowry                    | * |Charles                                                                                                                                     
+                                                                                                                                                                          
+       122| * |         4| * |Intermediate Java Programming                     | * |L210                                              | * |          108                 
+Lowry                    | * |Charles                                                                                                                                     
+                                                                                                                                                                          
+
+77 filas seleccionadas.
+
+SQL> 
+SQL> -----------------------------------------------------------------
+SQL> REM (A.Rischert,2009,310)
+SQL> REM 7.2 Exercises
+SQL> REM a) Display the student ID, course number, and section number of enrolled students where the instructor of the section lives in zip code 10025.
+SQL> REM In addition, the course should not have any prerequisites.
+SQL> 
+SQL> SELECT c.course_no, s.section_no, e.student_id
+  2  FROM course c, section s, instructor i, enrollment e
+  3  WHERE c.prerequisite IS NULL
+  4  AND c.course_no = s.course_no
+  5  AND s.instructor_id = i.instructor_id
+  6  AND i.zip = '10025'
+  7  AND s.section_id = e.section_id;
+
+ COURSE_NO| * |SECTION_NO| * |STUDENT_ID                                                                                                                                  
+----------| * |----------| * |----------                                                                                                                                  
+        10| * |         2| * |       128                                                                                                                                  
+        20| * |         2| * |       103                                                                                                                                  
+        20| * |         2| * |       104                                                                                                                                  
+        20| * |         2| * |       240                                                                                                                                  
+        20| * |         8| * |       158                                                                                                                                  
+        20| * |         8| * |       199                                                                                                                                  
+       146| * |         2| * |       117                                                                                                                                  
+       146| * |         2| * |       140                                                                                                                                  
+       310| * |         1| * |       119                                                                                                                                  
+       310| * |         1| * |       120                                                                                                                                  
+       310| * |         1| * |       238                                                                                                                                  
+       310| * |         1| * |       243                                                                                                                                  
+
+12 filas seleccionadas.
+
+SQL> 
+SQL> -------------------------------------------------------------------
+SQL> REM (A.Rischert,2009,310)
+SQL> REM 7.2 Exercises
+SQL> REM b) Produce the mailing addresses for instructors who taught sections that started in June 2007.
+SQL> 
+SQL> SELECT first_name || ' ' ||last_name name,
+  2  street_address, city || ', ' || state
+  3  || ' ' || zip "City State Zip",
+  4  TO_CHAR(start_date_time, 'MM/DD/YY') start_dt,
+  5  section_id sect
+  6  FROM instructor JOIN section s
+  7  USING (instructor_id)
+  8  JOIN zipcode
+  9  USING (zip)
+ 10  WHERE start_date_time >=TO_DATE('01-JUN-2007','DD-MON-YYYY')
+ 11  AND start_date_time < TO_DATE('01-JUL-2007','DD-MON-YYYY');
+
+ninguna fila seleccionada
+
+SQL> 
+SQL> -------------------------------------------------------------------
+SQL> REM (A.Rischert,2009,310)
+SQL> REM 7.2 Exercises
+SQL> rem c) List the student IDs of enrolled students living in Connecticut.
+SQL> 
+SQL> SELECT s.student_id
+  2  FROM student s, enrollment e, zipcode z
+  3  WHERE s.student_id = e.student_id
+  4  AND s.zip = z.zip
+  5  AND z.state = 'CT';
+
+STUDENT_ID                                                                                                                                                                
+----------                                                                                                                                                                
+       118                                                                                                                                                                
+       144                                                                                                                                                                
+       154                                                                                                                                                                
+       162                                                                                                                                                                
+       196                                                                                                                                                                
+       197                                                                                                                                                                
+       198                                                                                                                                                                
+       208                                                                                                                                                                
+       210                                                                                                                                                                
+       220                                                                                                                                                                
+       247                                                                                                                                                                
+       270                                                                                                                                                                
+       270                                                                                                                                                                
+
+13 filas seleccionadas.
+
+SQL> spool off;
